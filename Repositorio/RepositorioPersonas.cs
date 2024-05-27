@@ -7,7 +7,7 @@ namespace Gym.Repositorio
     {
         private readonly GymDBContext _context;
 
-        public RepositorioPersonas(GymDBContext context) 
+        public RepositorioPersonas(GymDBContext context)
         {
             _context = context;
         }
@@ -31,7 +31,7 @@ namespace Gym.Repositorio
 
         public async Task<Persona?> Get(int id)
         {
-            return await _context.Personas.FindAsync(id);
+            return await _context.Personas.Include(h => h.Clases).Where(r=>r.Id == id).FirstOrDefaultAsync();
         }
 
         public async Task<List<Persona>> GetAll()
@@ -44,18 +44,23 @@ namespace Gym.Repositorio
             return await _context.Clasificaciones.ToListAsync();
         }
 
+        public async Task<List<Clase>> GetClases()
+        {
+            return await _context.Clases.ToListAsync();
+        }
 
         public async Task Update(int id, Persona persona)
         {
             var personaactual = await _context.Personas.FindAsync(id);
-            if(personaactual != null)
+            if (personaactual != null)
             {
                 personaactual.Nombre = persona.Nombre;
                 personaactual.Correo = persona.Correo;
                 personaactual.Telefono = persona.Telefono;
+                personaactual.Clases = persona.Clases;
                 await _context.SaveChangesAsync();
             }
         }
-        
+
     }
 }

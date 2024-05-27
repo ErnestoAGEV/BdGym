@@ -1,0 +1,73 @@
+﻿@page "/clase/nueva"
+@page "/clase/editar/{Id:int}"
+@rendermode InteractiveServer
+@using Gym.Repositorio
+@inject NavigationManager _navigator;
+@inject IRepositorioClase _repositorio;
+<h2>@_mensaje Clase</h2>
+<EditForm Model="_clase" FormName="frmClase" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+
+    <div class="row mb-3">
+        <label for="txtNombre" class="col-2 col-form-label">Nombre</label>
+        <div class="col-10">
+            <InputText id="txtNombre" class="form-control" @bind-Value="_clase.Nombre" />
+            <ValidationMessage For="()=>_clase.Nombre" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="txtDescripcion" class="col-2 col-form-label">Descripción</label>
+        <div class="col-10">
+            <InputText id="txtDescripcion" class="form-control" @bind-Value="_clase.Descripcion" />
+            <ValidationMessage For="()=>_clase.Descripcion" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="txtNombre" class="col-2 col-form-label">Capacidad</label>
+        <div class="col-10">
+            <InputNumber id="txtNombre" class="form-control" @bind-Value="_clase.Capacidad" />
+            <ValidationMessage For="()=>_clase.Capacidad" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button class="btn btn-danger ms-3" @onclick="Cancelar" @onclick:preventDefault>Cancelar</button>
+
+</EditForm>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    public string _mensaje = "";
+    private Clase? _clase = new();
+    private List<Clase> _clases;
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id > 0)
+        {
+            _clase = await _repositorio.Get(Id);
+            _mensaje = "Modificar";
+        }
+        else
+        {
+            _mensaje = "Nuevo";
+        }
+    }
+
+    private async void Guardar()
+    {
+        if (Id > 0)
+        {
+            await _repositorio.Update(Id, _clase);
+        }
+        else
+        {
+            await _repositorio.Add(_clase!);
+        }
+        Cancelar();
+    }
+
+    private void Cancelar()
+    {
+        _navigator.NavigateTo("/clases");
+    }
+}

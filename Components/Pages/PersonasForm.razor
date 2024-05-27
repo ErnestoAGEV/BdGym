@@ -28,16 +28,27 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label for="txtClasificaciones" class="col-2 col-form-label">Clasificación</label>
+        <label for="txtClase" class="col-2 col-form-label">Clases</label>
+        <div class="col-10">
+            <InputSelect class="form-select" @bind-Value="_clasesSeleccionadas" multiple size ="3">
+                @foreach(Clase clase in _clases)
+                {
+                    <option value="@clase.Id">@clase.Nombre</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="txtClasificaciones" class="col-2 col-form-label">Plan</label>
         <div class="col-10">
             <InputSelect class="form-select" @bind-Value="_persona.ClasificacionId">
                 <option value="0" enabled="enabled">Escoja el Plan...</option>
-                @foreach(Clasificacion clasificacion in _clasificaciones)
+                @foreach (Clasificacion clasificacion in _clasificaciones)
                 {
                     <option value="@clasificacion.Id">@clasificacion.Nombre</option>
                 }
             </InputSelect>
-            <ValidationMessage For="()=>_persona.Telefono" />
+            <ValidationMessage For="()=>_persona.ClasificacionId" />
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
@@ -51,13 +62,20 @@
     public string _mensaje = "";
     private Persona? _persona = new();
     private List<Clasificacion> _clasificaciones = new();
+    private List<Clase> _clases = new();
+    private int[] _clasesSeleccionadas = new int[] { };
 
     protected override async Task OnInitializedAsync()
     {
         _clasificaciones = await _repositorio.GetClasificaciones();
+        _clases = await _repositorio.GetClases();
         if(Id > 0)
         {
             _persona = await _repositorio.Get(Id);
+            if(_persona.Clases.Count != 0 )
+            {
+                _clasesSeleccionadas = _persona.Clases.Select(i => i.Id).ToArray();
+            }
             _mensaje = "Modificar";
         }
         else
@@ -68,6 +86,19 @@
 
     private async void Guardar()
     {
+        if (_clasesSeleccionadas.Count() > 0)
+        {
+            List<Clase> clases = new();
+        foreach (int idClase in _clasesSeleccionadas)
+            {
+                clases.Add(_clases.First(r => r.Id == idClase));
+            }
+            _persona.Clases = clases;
+        }
+        else
+        {
+            _persona.Clases = null;
+        }
         if(Id>0)
         {
             await _repositorio.Update(Id, _persona!);

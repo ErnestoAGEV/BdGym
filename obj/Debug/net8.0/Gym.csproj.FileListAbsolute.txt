@@ -1,3 +1,10 @@
+C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.csproj.AssemblyReference.cache
+C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.AssemblyInfoInputs.cache
+C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.AssemblyInfo.cs
+C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.csproj.CoreCompileInputs.cache
+C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.sourcelink.json
 C:\Users\vevle\source\repos\Gym\Gym\Gym\bin\Debug\net8.0\Gym.Client.staticwebassets.runtime.json
 C:\Users\vevle\source\repos\Gym\Gym\Gym\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\vevle\source\repos\Gym\Gym\Gym\bin\Debug\net8.0\appsettings.json
@@ -135,12 +142,6 @@ C:\Users\vevle\source\repos\Gym\Gym\Gym\bin\Debug\net8.0\runtimes\win\lib\net6.0
 C:\Users\vevle\source\repos\Gym\Gym\Gym\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\vevle\source\repos\Gym\Gym\Gym\bin\Debug\net8.0\Gym.Client.dll
 C:\Users\vevle\source\repos\Gym\Gym\Gym\bin\Debug\net8.0\Gym.Client.pdb
-C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.csproj.AssemblyReference.cache
-C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.AssemblyInfoInputs.cache
-C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.AssemblyInfo.cs
-C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.csproj.CoreCompileInputs.cache
-C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\staticwebassets\msbuild.Gym.Microsoft.AspNetCore.StaticWebAssets.props
@@ -158,4 +159,3 @@ C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\refint\Gym.dll
 C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.pdb
 C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.genruntimeconfig.cache
 C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\ref\Gym.dll
-C:\Users\vevle\source\repos\Gym\Gym\Gym\obj\Debug\net8.0\Gym.sourcelink.json

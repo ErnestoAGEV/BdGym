@@ -10,7 +10,7 @@ namespace Gym.Modelos
         public string? Nombre { get; set; }
         [Required(ErrorMessage = "El correo es obligatorio")]
         [StringLength(100, ErrorMessage = "Maximo 100 caracteres")]
-        [EmailAddress(ErrorMessage ="Debe ser un correo valido")]
+        [EmailAddress(ErrorMessage = "Debe ser un correo valido")]
         public string? Correo { get; set; }
         [Required(ErrorMessage = "El telefono es obligatorio")]
         [StringLength(10, ErrorMessage = "Maximo 10 caracteres")]
@@ -19,6 +19,7 @@ namespace Gym.Modelos
         //Propiedad de clasificación
         public int ClasificacionId { get; set; }
         virtual public Clasificacion? Clasificacion { get; set; }
+        virtual public ICollection<Clase>? Clases { get; set; }
 
     }
 }
