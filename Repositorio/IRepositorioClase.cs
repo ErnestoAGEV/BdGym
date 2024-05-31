@@ -9,6 +9,7 @@ namespace Gym.Repositorio
         Task<Clase> Add(Clase clase);
         Task Update(int id, Clase clase);
         Task Delete(int id);
+
     }
 }
 

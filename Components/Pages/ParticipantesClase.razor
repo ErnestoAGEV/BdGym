@@ -1,0 +1,72 @@
+﻿@page "/clase/{ClaseId:int}/participantes"
+@inject IRepositorioClase _repositorioClase
+@inject IRepositorioPersonas _repositorioPersonas
+@inject NavigationManager _navigator
+@rendermode InteractiveServer
+
+<h3>Participantes de la clase: @_clase?.Nombre</h3>
+
+@if (_participantes == null)
+{
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Cargando...</span>
+    </div>
+}
+else if (!_participantes.Any())
+{
+    <p>No hay participantes registrados en esta clase.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var participante in _participantes)
+            {
+                <tr>
+                    <td>@participante.Nombre</td>
+                    <td>@participante.Correo</td>
+                    <td>@participante.Telefono</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button class="btn btn-danger ms-3" @onclick="Volver" @onclick:preventDefault>Regresar</button>
+}
+
+@code {
+    [Parameter]
+    public int ClaseId { get; set; }
+
+    private Clase? _clase;
+    private List<Persona>? _participantes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine($"Cargando datos para la clase con ID: {ClaseId}");
+        _clase = await _repositorioClase.Get(ClaseId);
+        if (_clase == null)
+        {
+            Console.WriteLine("No se encontró la clase.");
+        }
+        else
+        {
+            Console.WriteLine($"Clase encontrada: {_clase.Nombre}");
+            _participantes = _clase.Personas?.ToList() ?? new List<Persona>();
+            Console.WriteLine($"Número de participantes: {_participantes.Count}");
+        }
+    }
+
+    private void Volver()
+    {
+        _navigator.NavigateTo("/clases");
+    }
+
+    
+}

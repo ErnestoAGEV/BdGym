@@ -1,5 +1,7 @@
 ﻿using Gym.Modelos;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Gym.Repositorio
 {
@@ -31,15 +33,15 @@ namespace Gym.Repositorio
 
         public async Task<Clase?> Get(int id)
         {
-            return await _context.Clases.FindAsync(id);
+            return await _context.Clases
+                .Include(c => c.Personas)
+                .FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<List<Clase>> GetAll()
         {
             return await _context.Clases.ToListAsync();
         }
-
-      
 
         public async Task Update(int id, Clase clase)
         {
@@ -52,6 +54,5 @@ namespace Gym.Repositorio
                 await _context.SaveChangesAsync();
             }
         }
-
     }
 }

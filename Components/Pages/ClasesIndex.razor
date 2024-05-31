@@ -16,11 +16,10 @@
 </style>
 <br />
 
-
 @if (_clases == null)
 {
     <div class="spinner-border" role="status">
-        <span class="visually-hidden">Cargando...</span>
+        <span class="visualmente-hidden">Cargando...</span>
     </div>
 }
 else if (!_clases.Any())
@@ -29,13 +28,14 @@ else if (!_clases.Any())
 }
 else
 {
-    <table class="table table-hover table-bordered table mt-1">
+    <table class="table table mt-1">
         <thead class="table-dark">
             <tr>
                 <th>Nombre</th>
                 <th>Descripcion</th>
                 <th>Cupo</th>
                 <th>Acciones</th>
+                <th>Participantes</th>
             </tr>
         </thead>
         <tbody>
@@ -59,14 +59,18 @@ else
                             </svg>
                         </button>
                     </td>
+                    <td>
+                        <button class="btn btn-sm" title="Listar" @onclick="@(() => Listar(clase))">
+                            Participantes
+                        </button>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 }
 
-<a class="btn btn-secondary" href="clase/nueva">Agregar Clase</a>
-
+<a class="btn btn-primary" href="clase/nueva">Agregar Clase</a>
 
 @code {
     private List<Clase>? _clases;
@@ -86,5 +90,10 @@ else
     private void Modificar(int id)
     {
         _navigator.NavigateTo($"/clase/editar/{id}");
+    }
+
+    private void Listar(Clase clase)
+    {
+        _navigator.NavigateTo($"/clase/{clase.Id}/participantes", true);
     }
 }
